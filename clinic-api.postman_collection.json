@@ -1,0 +1,259 @@
+{
+  "info": {
+    "name": "Clinic API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_postman_id": "51c0e7ec-8e8d-4cb4-8d6f-6aecc28cdcc1",
+    "description": "Coleção para testar a API de clínica com cadastros, agenda e operações de caixa."
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080"
+    }
+  ],
+  "item": [
+    {
+      "name": "Paciente - Cadastro",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nome\": \"Fulano de Tal\",\n  \"cpf\": \"123.456.789-00\",\n  \"endereco\": \"Rua A, 123\",\n  \"email\": \"fulano@example.com\",\n  \"telefone\": \"(11) 99999-9999\",\n  \"convenio\": \"Plano Ouro\",\n  \"tratamento\": \"Fisioterapia\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/pacientes/cadastro",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "pacientes",
+            "cadastro"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Medico - Cadastro",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nome\": \"Dra. Ana Silva\",\n  \"cpf\": \"987.654.321-00\",\n  \"endereco\": \"Av. Central, 456\",\n  \"email\": \"ana.silva@example.com\",\n  \"telefone\": \"(11) 98888-8888\",\n  \"crm\": \"CRM-SP 123456\",\n  \"especialidade\": \"Cardiologia\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/medicos/cadastro",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "medicos",
+            "cadastro"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Atendente - Cadastro",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nome\": \"João Souza\",\n  \"cpf\": \"111.222.333-44\",\n  \"endereco\": \"Rua B, 789\",\n  \"email\": \"joao.souza@example.com\",\n  \"telefone\": \"(11) 97777-7777\",\n  \"turno\": \"Manhã\",\n  \"salario\": 2500.0\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/atendentes/cadastro",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "atendentes",
+            "cadastro"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Agenda - Agendar Consulta",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"paciente\": \"Fulano de Tal\",\n  \"medico\": \"Dra. Ana Silva\",\n  \"data\": \"2024-05-15\",\n  \"hora\": \"14:00\",\n  \"valorConsulta\": 250.0\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/agenda/agendar-consulta",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "agenda",
+            "agendar-consulta"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Agenda - Desmarcar Consulta",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"paciente\": \"Fulano de Tal\",\n  \"data\": \"2024-05-15\",\n  \"hora\": \"14:00\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/agenda/desmarcar-consulta",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "agenda",
+            "desmarcar-consulta"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Caixa - Receber Consulta",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"valor\": 250.0,\n  \"operacao\": \"ENTRADA\",\n  \"data\": \"2024-05-15\",\n  \"hora\": \"15:00\",\n  \"descricao\": \"Recebimento da consulta do paciente Fulano de Tal\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/caixa/receber-consulta",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "caixa",
+            "receber-consulta"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Caixa - Pagar Medico",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"valor\": 180.0,\n  \"operacao\": \"SAIDA\",\n  \"data\": \"2024-05-16\",\n  \"hora\": \"10:00\",\n  \"descricao\": \"Pagamento referente a consulta\",\n  \"medico\": \"Dra. Ana Silva\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/caixa/pagar-medico",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "caixa",
+            "pagar-medico"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Caixa - Salario Atendente",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"valor\": 2500.0,\n  \"operacao\": \"SAIDA\",\n  \"data\": \"2024-05-30\",\n  \"hora\": \"17:00\",\n  \"descricao\": \"Pagamento salarial mensal\",\n  \"atendente\": \"João Souza\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/caixa/salario-atendente",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "caixa",
+            "salario-atendente"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Caixa - Pagar Contas",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"valor\": 500.0,\n  \"operacao\": \"SAIDA\",\n  \"data\": \"2024-05-20\",\n  \"hora\": \"09:00\",\n  \"descricao\": \"Pagamento de energia elétrica\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/caixa/pagar-contas",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "caixa",
+            "pagar-contas"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}

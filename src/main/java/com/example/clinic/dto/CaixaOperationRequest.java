@@ -7,7 +7,6 @@ public class CaixaOperationRequest {
     private String hora;
     private String descricao;
     private String medico;
-    private String atendente;
 
     public double getValor() {
         return valor;
@@ -57,11 +56,4 @@ public class CaixaOperationRequest {
         this.medico = medico;
     }
 
-    public String getAtendente() {
-        return atendente;
-    }
-
-    public void setAtendente(String atendente) {
-        this.atendente = atendente;
-    }
 }

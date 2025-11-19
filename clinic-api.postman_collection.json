@@ -200,60 +200,6 @@
         }
       },
       "response": []
-    },
-    {
-      "name": "Caixa - Salario Atendente",
-      "request": {
-        "method": "POST",
-        "header": [
-          {
-            "key": "Content-Type",
-            "value": "application/json"
-          }
-        ],
-        "body": {
-          "mode": "raw",
-          "raw": "{\n  \"valor\": 2500.0,\n  \"operacao\": \"SAIDA\",\n  \"data\": \"2024-05-30\",\n  \"hora\": \"17:00\",\n  \"descricao\": \"Pagamento salarial mensal\",\n  \"atendente\": \"João Souza\"\n}"
-        },
-        "url": {
-          "raw": "{{baseUrl}}/caixa/salario-atendente",
-          "host": [
-            "{{baseUrl}}"
-          ],
-          "path": [
-            "caixa",
-            "salario-atendente"
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "Caixa - Pagar Contas",
-      "request": {
-        "method": "POST",
-        "header": [
-          {
-            "key": "Content-Type",
-            "value": "application/json"
-          }
-        ],
-        "body": {
-          "mode": "raw",
-          "raw": "{\n  \"valor\": 500.0,\n  \"operacao\": \"SAIDA\",\n  \"data\": \"2024-05-20\",\n  \"hora\": \"09:00\",\n  \"descricao\": \"Pagamento de energia elétrica\"\n}"
-        },
-        "url": {
-          "raw": "{{baseUrl}}/caixa/pagar-contas",
-          "host": [
-            "{{baseUrl}}"
-          ],
-          "path": [
-            "caixa",
-            "pagar-contas"
-          ]
-        }
-      },
-      "response": []
     }
   ]
 }

@@ -1,16 +1,16 @@
 package com.example.clinic.dto;
 
 public class CancelamentoRequest {
-    private String paciente;
+    private Long pacienteId;
     private String data;
     private String hora;
 
-    public String getPaciente() {
-        return paciente;
+    public Long getPacienteId() {
+        return pacienteId;
     }
 
-    public void setPaciente(String paciente) {
-        this.paciente = paciente;
+    public void setPacienteId(Long pacienteId) {
+        this.pacienteId = pacienteId;
     }
 
     public String getData() {

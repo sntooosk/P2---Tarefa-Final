@@ -1,26 +1,26 @@
 package com.example.clinic.dto;
 
 public class AgendaRequest {
-    private String paciente;
-    private String medico;
+    private Long pacienteId;
+    private Long medicoId;
     private String data;
     private String hora;
     private double valorConsulta;
 
-    public String getPaciente() {
-        return paciente;
+    public Long getPacienteId() {
+        return pacienteId;
     }
 
-    public void setPaciente(String paciente) {
-        this.paciente = paciente;
+    public void setPacienteId(Long pacienteId) {
+        this.pacienteId = pacienteId;
     }
 
-    public String getMedico() {
-        return medico;
+    public Long getMedicoId() {
+        return medicoId;
     }
 
-    public void setMedico(String medico) {
-        this.medico = medico;
+    public void setMedicoId(Long medicoId) {
+        this.medicoId = medicoId;
     }
 
     public String getData() {

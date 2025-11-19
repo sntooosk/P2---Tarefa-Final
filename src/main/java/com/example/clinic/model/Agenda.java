@@ -4,6 +4,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -13,8 +15,12 @@ public class Agenda {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String paciente;
-    private String medico;
+    @ManyToOne
+    @JoinColumn(name = "paciente_id")
+    private Paciente paciente;
+    @ManyToOne
+    @JoinColumn(name = "medico_id")
+    private Medico medico;
     private String data;
     private String hora;
     private double valorConsulta;
@@ -22,7 +28,7 @@ public class Agenda {
     public Agenda() {
     }
 
-    public Agenda(String paciente, String medico, String data, String hora, double valorConsulta) {
+    public Agenda(Paciente paciente, Medico medico, String data, String hora, double valorConsulta) {
         this.paciente = paciente;
         this.medico = medico;
         this.data = data;
@@ -38,19 +44,19 @@ public class Agenda {
         this.id = id;
     }
 
-    public String getPaciente() {
+    public Paciente getPaciente() {
         return paciente;
     }
 
-    public void setPaciente(String paciente) {
+    public void setPaciente(Paciente paciente) {
         this.paciente = paciente;
     }
 
-    public String getMedico() {
+    public Medico getMedico() {
         return medico;
     }
 
-    public void setMedico(String medico) {
+    public void setMedico(Medico medico) {
         this.medico = medico;
     }
 

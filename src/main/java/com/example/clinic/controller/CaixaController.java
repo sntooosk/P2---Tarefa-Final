@@ -50,34 +50,6 @@ public class CaixaController {
         return ResponseEntity.ok(resposta);
     }
 
-    @PostMapping("/salario-atendente")
-    public ResponseEntity<Map<String, Object>> salarioAtendente(@RequestBody CaixaOperationRequest request) {
-        Caixa caixa = caixaService.registrarOperacao(
-                request.getValor(),
-                request.getOperacao(),
-                request.getData(),
-                request.getHora(),
-                "Pagamento de salário para atendente: " + request.getAtendente()
-        );
-        Map<String, Object> resposta = buildResponse("Pagamento de salário registrado com sucesso", caixa, request).getBody();
-        if (resposta != null) {
-            resposta.put("atendente", request.getAtendente());
-        }
-        return ResponseEntity.ok(resposta);
-    }
-
-    @PostMapping("/pagar-contas")
-    public ResponseEntity<Map<String, Object>> pagarContas(@RequestBody CaixaOperationRequest request) {
-        Caixa caixa = caixaService.registrarOperacao(
-                request.getValor(),
-                request.getOperacao(),
-                request.getData(),
-                request.getHora(),
-                request.getDescricao()
-        );
-        return buildResponse("Pagamento de contas registrado com sucesso", caixa, request);
-    }
-
     private ResponseEntity<Map<String, Object>> buildResponse(String status, Caixa caixa, CaixaOperationRequest request) {
         Map<String, Object> resposta = new HashMap<>();
         resposta.put("status", status);

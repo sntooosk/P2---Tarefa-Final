@@ -4,6 +4,7 @@ import com.example.clinic.dto.AgendaRequest;
 import com.example.clinic.dto.CancelamentoRequest;
 import com.example.clinic.model.Agenda;
 import com.example.clinic.service.AgendaService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,25 +26,23 @@ public class AgendaController {
 
     @PostMapping("/agendar-consulta")
     public ResponseEntity<Map<String, Object>> agendarConsulta(@RequestBody AgendaRequest request) {
-        Agenda agenda = new Agenda(
-                request.getPaciente(),
-                request.getMedico(),
-                request.getData(),
-                request.getHora(),
-                request.getValorConsulta()
-        );
-        Agenda salvo = agendaService.agendar(agenda);
-
         Map<String, Object> resposta = new HashMap<>();
-        resposta.put("status", "Agendamento realizado com sucesso");
-        resposta.put("agenda", salvo);
-        return ResponseEntity.ok(resposta);
+        try {
+            Agenda salvo = agendaService.agendar(request);
+            resposta.put("status", "Agendamento realizado com sucesso");
+            resposta.put("agenda", salvo);
+            return ResponseEntity.ok(resposta);
+        } catch (IllegalArgumentException e) {
+            resposta.put("status", e.getMessage());
+            resposta.put("agenda", null);
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(resposta);
+        }
     }
 
     @PostMapping("/desmarcar-consulta")
     public ResponseEntity<Map<String, Object>> desmarcarConsulta(@RequestBody CancelamentoRequest request) {
         Map<String, Object> resposta = new HashMap<>();
-        agendaService.desmarcar(request.getPaciente(), request.getData(), request.getHora())
+        agendaService.desmarcar(request.getPacienteId(), request.getData(), request.getHora())
                 .ifPresentOrElse(
                         agenda -> {
                             resposta.put("agendamentoCancelado", agenda);

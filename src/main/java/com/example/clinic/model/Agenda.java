@@ -7,9 +7,10 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "agendas")
+@Table(name = "agendas", uniqueConstraints = @UniqueConstraint(columnNames = { "paciente_id", "data", "hora" }))
 public class Agenda {
 
     @Id

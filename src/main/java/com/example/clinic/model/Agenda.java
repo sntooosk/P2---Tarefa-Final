@@ -9,26 +9,40 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
 
+// Entidade que representa um agendamento de consulta no banco de dados.
 @Entity
 @Table(name = "agendas", uniqueConstraints = @UniqueConstraint(columnNames = { "paciente_id", "data", "hora" }))
 public class Agenda {
 
+    // Identificador único gerado automaticamente pela JPA.
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    // Paciente associado à consulta.
     @ManyToOne
     @JoinColumn(name = "paciente_id")
     private Paciente paciente;
+
+    // Médico responsável pela consulta.
     @ManyToOne
     @JoinColumn(name = "medico_id")
     private Medico medico;
+
+    // Data da consulta no formato dd/MM/yyyy.
     private String data;
+
+    // Horário da consulta.
     private String hora;
+
+    // Valor cobrado pela consulta.
     private double valorConsulta;
 
+    // Construtor padrão exigido pelo JPA.
     public Agenda() {
     }
 
+    // Construtor usado para criar novas instâncias de agendamento.
     public Agenda(Paciente paciente, Medico medico, String data, String hora, double valorConsulta) {
         this.paciente = paciente;
         this.medico = medico;

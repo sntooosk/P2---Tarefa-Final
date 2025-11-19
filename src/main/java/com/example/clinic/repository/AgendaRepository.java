@@ -7,5 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface AgendaRepository extends JpaRepository<Agenda, Long> {
+
     List<Agenda> findByPacienteAndDataAndHora(Paciente paciente, String data, String hora);
+
 }

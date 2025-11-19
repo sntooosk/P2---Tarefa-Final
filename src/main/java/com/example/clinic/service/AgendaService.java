@@ -19,8 +19,9 @@ public class AgendaService {
     private final PacienteRepository pacienteRepository;
     private final MedicoRepository medicoRepository;
 
-    public AgendaService(AgendaRepository agendaRepository, PacienteRepository pacienteRepository,
-            MedicoRepository medicoRepository) {
+    public AgendaService(AgendaRepository agendaRepository,
+                         PacienteRepository pacienteRepository,
+                         MedicoRepository medicoRepository) {
         this.agendaRepository = agendaRepository;
         this.pacienteRepository = pacienteRepository;
         this.medicoRepository = medicoRepository;
@@ -37,7 +38,9 @@ public class AgendaService {
                 medico,
                 request.getData(),
                 request.getHora(),
-                request.getValorConsulta());
+                request.getValorConsulta()
+        );
+
         return agendaRepository.save(agenda);
     }
 
@@ -46,14 +49,14 @@ public class AgendaService {
                 .flatMap(paciente -> {
                     List<Agenda> agendas = agendaRepository.findByPacienteAndDataAndHora(paciente, data, hora);
 
-                    if (agendas.isEmpty())
+                    if (agendas.isEmpty()) {
                         return Optional.empty();
+                    }
 
-                    Agenda agenda = agendas.get(0); // pega a primeira ocorrência
+                    Agenda agenda = agendas.get(0);
                     agendaRepository.delete(agenda);
 
                     return Optional.of(agenda);
                 });
     }
-
 }

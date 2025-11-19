@@ -9,9 +9,9 @@ import com.example.clinic.repository.MedicoRepository;
 import com.example.clinic.repository.PacienteRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
-// Camada de serviço responsável pelas regras de negócio relacionadas aos agendamentos.
 @Service
 public class AgendaService {
 
@@ -19,14 +19,14 @@ public class AgendaService {
     private final PacienteRepository pacienteRepository;
     private final MedicoRepository medicoRepository;
 
-    // Construtor para injetar os repositórios necessários.
-    public AgendaService(AgendaRepository agendaRepository, PacienteRepository pacienteRepository, MedicoRepository medicoRepository) {
+    public AgendaService(AgendaRepository agendaRepository,
+                         PacienteRepository pacienteRepository,
+                         MedicoRepository medicoRepository) {
         this.agendaRepository = agendaRepository;
         this.pacienteRepository = pacienteRepository;
         this.medicoRepository = medicoRepository;
     }
 
-    // Cria um novo agendamento após validar a existência de paciente e médico.
     public Agenda agendar(AgendaRequest request) {
         Paciente paciente = pacienteRepository.findById(request.getPacienteId())
                 .orElseThrow(() -> new IllegalArgumentException("Paciente não encontrado"));
@@ -40,16 +40,23 @@ public class AgendaService {
                 request.getHora(),
                 request.getValorConsulta()
         );
+
         return agendaRepository.save(agenda);
     }
 
-    // Desmarca um agendamento existente, caso seja encontrado para o paciente, data e hora informados.
     public Optional<Agenda> desmarcar(Long pacienteId, String data, String hora) {
         return pacienteRepository.findById(pacienteId)
                 .flatMap(paciente -> {
-                    Optional<Agenda> agenda = agendaRepository.findByPacienteAndDataAndHora(paciente, data, hora);
-                    agenda.ifPresent(agendaRepository::delete);
-                    return agenda;
+                    List<Agenda> agendas = agendaRepository.findByPacienteAndDataAndHora(paciente, data, hora);
+
+                    if (agendas.isEmpty()) {
+                        return Optional.empty();
+                    }
+
+                    Agenda agenda = agendas.get(0);
+                    agendaRepository.delete(agenda);
+
+                    return Optional.of(agenda);
                 });
     }
 }

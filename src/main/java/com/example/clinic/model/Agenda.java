@@ -7,10 +7,11 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 
 // Entidade que representa um agendamento de consulta no banco de dados.
 @Entity
-@Table(name = "agendas")
+@Table(name = "agendas", uniqueConstraints = @UniqueConstraint(columnNames = { "paciente_id", "data", "hora" }))
 public class Agenda {
 
     // Identificador único gerado automaticamente pela JPA.

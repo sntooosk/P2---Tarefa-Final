@@ -1,0 +1,46 @@
+# Compilação
+target/
+out/
+build/
+
+# Maven
+.mvn/wrapper/maven-wrapper.jar
+/logs/
+!.mvn/wrapper/maven-wrapper.properties
+
+# IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# Eclipse
+.project
+.classpath
+.settings/
+
+# VS Code
+.vscode/
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
+
+# Arquivos temporários
+*.log
+*.tmp
+*.cache
+*.swp
+*.swo
+
+# H2 Database (caso gere arquivos no disco)
+*.mv.db
+*.h2.db
+
+# Arquivos de ambiente
+.env
+*.local
+
+# Backup e arquivos indevidos
+*.bak
+*.old

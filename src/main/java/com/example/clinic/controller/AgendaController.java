@@ -14,16 +14,19 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.HashMap;
 import java.util.Map;
 
+// Controlador responsável por expor os endpoints relacionados a agendamentos.
 @RestController
 @RequestMapping("/agenda")
 public class AgendaController {
 
     private final AgendaService agendaService;
 
+    // Injeta o serviço de agenda por meio do construtor.
     public AgendaController(AgendaService agendaService) {
         this.agendaService = agendaService;
     }
 
+    // Endpoint para agendar uma nova consulta.
     @PostMapping("/agendar-consulta")
     public ResponseEntity<Map<String, Object>> agendarConsulta(@RequestBody AgendaRequest request) {
         Map<String, Object> resposta = new HashMap<>();
@@ -39,6 +42,7 @@ public class AgendaController {
         }
     }
 
+    // Endpoint para cancelar uma consulta existente.
     @PostMapping("/desmarcar-consulta")
     public ResponseEntity<Map<String, Object>> desmarcarConsulta(@RequestBody CancelamentoRequest request) {
         Map<String, Object> resposta = new HashMap<>();

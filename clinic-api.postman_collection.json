@@ -105,7 +105,7 @@
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"paciente\": \"Fulano de Tal\",\n  \"medico\": \"Dra. Ana Silva\",\n  \"data\": \"2024-05-15\",\n  \"hora\": \"14:00\",\n  \"valorConsulta\": 250.0\n}"
+          "raw": "{\n  \"pacienteId\": 1,\n  \"medicoId\": 1,\n  \"data\": \"2024-05-15\",\n  \"hora\": \"14:00\",\n  \"valorConsulta\": 250.0\n}"
         },
         "url": {
           "raw": "{{baseUrl}}/agenda/agendar-consulta",
@@ -132,7 +132,7 @@
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"paciente\": \"Fulano de Tal\",\n  \"data\": \"2024-05-15\",\n  \"hora\": \"14:00\"\n}"
+          "raw": "{\n  \"pacienteId\": 1,\n  \"data\": \"2024-05-15\",\n  \"hora\": \"14:00\"\n}"
         },
         "url": {
           "raw": "{{baseUrl}}/agenda/desmarcar-consulta",
